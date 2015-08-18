@@ -1,0 +1,65 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <title></title>
+    <!--
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    -->
+
+    <!--
+    <link href="" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+
+    </style>
+    -->
+
+    <script type="text/javascript" src="bower_components/requirejs/require.js"></script>
+    <script type="text/javascript">
+        requirejs.nextTick = function (fn) { fn.apply(this, arguments); };
+        document.documentElement.className = document.documentElement.className.replace(new RegExp('(^|\\s)no-js(\\s|$)'), '$1' + 'js' + '$2');
+    </script>
+    <script type="text/javascript">
+        require.config({
+            context: 'et',
+            paths: (function () {
+                var singleCacheSvr = 'http://localhost',
+                    salespages_shared = singleCacheSvr + '/online/cn/_shared/src',
+                    bower_components = './bower_components',
+                    react_demo = './src';
+                return {
+                    'singleCacheSvr': singleCacheSvr,
+                    'salespages_shared': salespages_shared,
+                    'jquery': singleCacheSvr + '/_shared/jquery/1.7.2/jquery',
+                    'template': salespages_shared + '/js/widget/template/main',
+                    'csstemplate': salespages_shared + '/js/widget/css-template/main',
+
+                    'react': bower_components + '/react/react-with-addons',
+                    'JSXTransformer': bower_components + '/react/JSXTransformer',
+                    'text': bower_components + '/requirejs-text/text',
+                    'jsx': react_demo + '/util/jsx/dev',
+
+                    'react-demo': react_demo
+                };
+            })(),
+            jsx: {
+                fileExtension: '.jsx'
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div id="containerBody"></div>
+
+    <script type="text/javascript">
+        require.config({context:'et'})(['react-demo/main']);
+    </script>
+
+</body>
+</html>
