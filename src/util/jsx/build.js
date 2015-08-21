@@ -1,4 +1,4 @@
-define(['JSXTransformer'], function (JSXTransformer) {
+define([], function () {
     var fs, getXhr,
         progIds = ['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.4.0'],
         fetchText = function () {
@@ -44,7 +44,7 @@ define(['JSXTransformer'], function (JSXTransformer) {
         };
 
         fetchText = function (name, path, callback, config) {
-            var url = path;
+            var url = path + '.js';
 
             url = url.replace(/^https?:\/\/.*?\//ig, '/');
 
@@ -91,8 +91,6 @@ define(['JSXTransformer'], function (JSXTransformer) {
     return {
         load: function (name, parentRequire, load, config) {
             var path = parentRequire.toUrl(name);
-
-            path = path + '.js';
 
             fetchText(name, path, function (text) {
                 try {
