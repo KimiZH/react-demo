@@ -90,13 +90,16 @@ define(['JSXTransformer'], function (JSXTransformer) {
 
     return {
         load: function (name, parentRequire, load, config) {
-            var path = parentRequire.toUrl(name);
-
-            path = path + '.js';
+            var jsxOptions = config.jsx || {},
+                transformOptions = {
+                    harmony: !!jsxOptions.harmony,
+                    stripTypes: !!jsxOptions.stripTypes
+                },
+                path = parentRequire.toUrl(name);
 
             fetchText(name, path, function (text) {
                 try {
-                    text = text;
+                    text = JSXTransformer.transform(text, transformOptions).code;
                     // text = 'define([\'react\'], function(React){return ' + text + ';});';
                 } catch (err) {
                     err.message = "In " + path + ", " + err.message;
@@ -129,3 +132,12 @@ define(['JSXTransformer'], function (JSXTransformer) {
         }
     }
 });
+
+// define({
+//     load: function (name, req, onload, config) {
+//         //req has the same API as require().
+//         req([name], function (value) {
+//             onload(value);
+//         });
+//     }
+// });

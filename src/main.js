@@ -1,6 +1,6 @@
 define([
     'react',
-    'jsx!./main-jsx'
+    'jsx!./main.jsx'
 ], function (
     React,
     jsxMain
